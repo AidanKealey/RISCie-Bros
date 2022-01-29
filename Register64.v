@@ -2,7 +2,7 @@
    
 // 64-bit typical register 
 
-module register32 (Q, D, clr, clk, enable);
+module register64 (Q, D, clr, clk, enable);
   output reg [63:0] Q;
   input [63:0] D;
   input clr, clk, enable;
