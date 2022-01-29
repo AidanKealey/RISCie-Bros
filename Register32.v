@@ -7,8 +7,8 @@ module Register32 (q, d, clr, clk, enable);
   
   always @ (posedge clk or negedge clr) begin
     if (clr == 0)
-      Q <= 0;
+      q <= 0;
     else if (enable)
-      Q <= D;
+      q <= d;
    end
 endmodule // Register32
