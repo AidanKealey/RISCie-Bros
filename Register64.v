@@ -1,17 +1,14 @@
+// 64-Bit Register
 
-   
-// 64-bit typical register 
-
-module register64 (Q, D, clr, clk, enable);
-  output reg [63:0] Q;
-  input [63:0] D;
+module Register64 (q, d, clr, clk, enable);
+   output reg [63:0] q;
+   input [63:0] d;
   input clr, clk, enable;
   
-  always @(posedge clk or negedge clr)
-  begin
+  always @ (posedge clk or negedge clr) begin
     if (clr == 0)
       Q <= 0;
     else if (enable)
       Q <= D;
    end
-endmodule   //register64
+endmodule // Register64
