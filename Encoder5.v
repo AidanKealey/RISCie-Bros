@@ -1,4 +1,4 @@
-// 32 to 5 Encoder
+// 32-bit to 5-bit Encoder
 
 module Encoder5 (outEncoder5, R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, high, low, zHigh, zLow, PC, MDR, inPort, c);
   output [4:0] outEncoder5;
