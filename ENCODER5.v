@@ -1,31 +1,31 @@
 // 32 to 5 Encoder
 
-module ENCODER5 (out, inR0, inR1, inR2, inR3, inR4, inR5, inR6, inR7, inR8, inR9, inR10, inR11, inR12, inR13, inR14, inR15, HI, LOW, ZHI, ZLOW, inPC, inMDR, inPort, Cout);
-  output [4:0] out;
-  input inR0, inR1, inR2, inR3, inR4, inR5, inR6, inR7, inR8, inR9, inR10, inR11, inR12, inR13, inR14, inR15, HI, LOW, ZHI, ZLOW, inPC, inMDR, inPort, Cout;
+module Encoder5 (outEncoder5, R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, high, low, zHigh, zLow, PC, MDR, inPort, c);
+  output [4:0] outEncoder5;
+  input R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, high, low, zHigh, zLow, PC, MDR, inPort, c;
   
-  assign out = (inR0 == 1) ? 0:
-               (inR1 == 1) ? 1:
-               (inR2 == 1) ? 2:
-               (inR3 == 1) ? 3:
-               (inR4 == 1) ? 4:
-               (inR5 == 1) ? 5:
-               (inR6 == 1) ? 6:
-               (inR7 == 1) ? 7:
-               (inR8 == 1) ? 8:
-               (inR9 == 1) ? 9:
-               (inR10 == 1) ? 10:
-               (inR11 == 1) ? 11:
-               (inR12 == 1) ? 12:
-               (inR13 == 1) ? 13:
-               (inR14 == 1) ? 14:
-               (inR15 == 1) ? 15:
-               (HI == 1) ? 16:
-               (LOW == 1) ? 17:
-               (ZHI == 1) ? 18:
-               (ZLOW == 1) ? 19:
-               (inPC == 1) ? 20:
-               (inMDR == 1) ? 21:
+  assign outEncoder5 = (R0 == 1) ? 0:
+               (R1 == 1) ? 1:
+               (R2 == 1) ? 2:
+               (R3 == 1) ? 3:
+               (R4 == 1) ? 4:
+               (R5 == 1) ? 5:
+               (R6 == 1) ? 6:
+               (R7 == 1) ? 7:
+               (R8 == 1) ? 8:
+               (R9 == 1) ? 9:
+               (R10 == 1) ? 10:
+               (R11 == 1) ? 11:
+               (R12 == 1) ? 12:
+               (R13 == 1) ? 13:
+               (R14 == 1) ? 14:
+               (R15 == 1) ? 15:
+               (high == 1) ? 16:
+               (low == 1) ? 17:
+               (zHigh == 1) ? 18:
+               (zLow == 1) ? 19:
+               (PC == 1) ? 20:
+               (MDR == 1) ? 21:
                (inPort == 1) ? 22:
-               (Cout == 1) ? 23: 0;
-endmodule   //ENCODER5
+               (c == 1) ? 23: x;
+endmodule // Encoder5

@@ -1,6 +1,4 @@
-# RISCie-Bros
-374 RISC processor design project
-
-
-Logan Copeland
-Aidan Kealey
+# ELEC 374 RISC Processor Design Project
+## Authors:
+- Logan Copeland
+- Aidan Kealey
