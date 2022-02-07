@@ -1,11 +1,12 @@
 // Arithmetic Logic Unit
 
 module ALU (outALU, A, B, ctrl, clr, clk, enable);
-    output [63:0] outALU;
+    output[63:0] outALU;
     input [63:0] A, B;
-    input [4:0] ctrl;
+	 input [4:0] ctrl;
+	 input clr, clk, enable;
 
-    wire [63:0] C;
+    reg [63:0] C;
     Register64 Y (.q (outALU), .d (C), .clr (clr), .clk (clk), .enable (enable));
 
     always @ (*) begin
@@ -22,7 +23,7 @@ module ALU (outALU, A, B, ctrl, clr, clk, enable);
             5'b1001 : C = A || B; // or
             5'b1010 : C = ~ A; // negate
             5'b1011 : C = ! A; // not
-            default = x;
+            default : C = 64'bx;
         endcase
     end
 endmodule // ALU
