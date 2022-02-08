@@ -9,4 +9,4 @@ module MDR (outMDR, in0, in1, clr, clk, enable, sel);
   
   MUX MDMux (.out (outMux), .in0 (in0), .in1 (in1), .sel (sel));
   Register32 MDR (.q (outMDR), .d (muxMux), .clr (clr), .clk (clk), .enable (enable));
-endmodule   // MDR
+endmodule // MDR
