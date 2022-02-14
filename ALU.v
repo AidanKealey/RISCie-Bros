@@ -3,8 +3,10 @@
 module ALU (zHI, zLOW, A, B, ctrl, clr, clk, enable);
     output reg [31:0] zHI, zLOW;
     input [31:0] A, B;
-	input [4:0] ctrl;
+	input [3:0] ctrl;
 	input clr, clk, enable;
+
+    wire [31:0] moutHI, moutLOW;
 
     always @ (*) begin
         case(ctrl)
@@ -45,8 +47,8 @@ module ALU (zHI, zLOW, A, B, ctrl, clr, clk, enable);
                 zHI  <= B - (A*(A/B));      // remainder
             end
             4'b0010 : begin                 // multiply
-                zLOW = A * B; 
-                zHI = {{32'd0, A}*B} >> 32;
+                zLOW = moutLOW;
+                zHI = moutHI;
             end
             4'b0001 : begin                 // subract
                 zLOW <= A - B; 
@@ -59,4 +61,6 @@ module ALU (zHI, zLOW, A, B, ctrl, clr, clk, enable);
             default : begin end             // default case (do nothing)
         endcase
     end
+    // operations
+    MUL mul(moutHI, moutLOW, A, B, clk);
 endmodule // ALU
