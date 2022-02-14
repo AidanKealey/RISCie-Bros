@@ -1,6 +1,6 @@
 // Memory Data Register
 
-module MDR (outMDR, in0, in1, clr, clk, enable, sel);
+module MDR (MDROut, BusMuxOut, MDataIn, clr, clk, MDRin, sel);
   output [31:0] outMDR;
   input [31:0] in0, in1;
   input clr, clk, enable, sel;

@@ -1,6 +1,6 @@
 // General 32-Bit Register
 
-module GeneralRegister32 (
+module Register32 (
   output reg [31:0] Q,
   input [31:0] D,
   input clr, clk, enable
@@ -12,4 +12,4 @@ module GeneralRegister32 (
     else if (enable)
       Q = D;
    end
-endmodule // GeneralRegister32
+endmodule // Register32
