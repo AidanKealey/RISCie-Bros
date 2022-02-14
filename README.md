@@ -1,5 +1,5 @@
 # RISCie-Bros
-374 RISC processor design project
+374 mini RISC processor design project
 
 
 Logan Copeland
