@@ -41,12 +41,6 @@ Register32 HI (BusMux_In_HI, BusMux_Out, Clear, Clock, HI_In);
 // 32-Bit Register LO
 Register32 LO (BusMux_In_LO, BusMux_Out, Clear, Clock, LO_In);
 
-// 32-Bit Register ZHI
-Register32 ZHI (BusMux_In_ZHI, BusMux_Out, Clear, Clock, ZHI_In);
-
-// 32-Bit Register InPort
-Register32 InPort (BusMux_In_InPort, BusMux_Out, Clear, Clock, InPort_In);
-
 // 32-Bit Register Y
 Register32 Y (Y_Data, BusMux_Out, Clear, Clock, Y_In);
 
@@ -63,7 +57,7 @@ MDRegister MDR (BusMux_In_MDR, BusMux_Out, MData_In, Read, Clear, Clock, MDR_In)
 Register32 MAR (MAR_Out, BusMux_Out, Clear, Clock, MAR_In);
 
 // Arithmetic Logic Unit
-ArithmeticLogicUnit ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear Clock);
+ArithmeticLogicUnit ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear, Clock);
 
 // 32-Bit Bus
 Bus32 Bus (BusMux_Out, 
