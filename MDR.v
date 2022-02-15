@@ -1,12 +1,13 @@
 // Memory Data Register
 
-module MDR (MDROut, BusMuxOut, MDataIn, clr, clk, MDRin, sel);
-  output [31:0] outMDR;
-  input [31:0] in0, in1;
-  input clr, clk, enable, sel;
+module MDR (
+  output [31:0] MDR_Out,
+  input [31:0] BusMux_Out, MData_In,
+  input Read, Clear, Clock, MDR_In
+);
   
-  wire [31:0] outMux;
+  wire [31:0] MDMux_Out;
   
-  MUX MDMux (.out (outMux), .in0 (in0), .in1 (in1), .sel (sel));
-  Register32 MDR (.q (outMDR), .d (muxMux), .clr (clr), .clk (clk), .enable (enable));
+  MUX MDMux (MDMux_Out, BusMux_Out, MData_In, Read);
+  Register32 MDR (MDR_Out, MDMux_Out, Clear, Clock, MDR_In);
 endmodule // MDR
