@@ -51,22 +51,22 @@ Register32 InPort (BusMux_In_InPort, BusMux_Out, Clear, Clock, InPort_In);
 Register32 Y (Y_Data, BusMux_Out, Clear, Clock, Y_In);
 
 // Program Counter
-RegisterPC PC (BusMux_In_PC, BusMux_Out, Clear, Clock, PC_In, IncPC);
+PCRegister PC (BusMux_In_PC, BusMux_Out, Clear, Clock, PC_In, IncPC);
 
 // Instruction Register
 Register32 IR (IR_Out, BusMux_Out, Clear, Clock, IR_In);
 
 // Memory Data Register
-MDR MDR (BusMux_In_MDR, BusMux_Out, MData_In, Read, Clear, Clock, MDR_In);
+MDRegister MDR (BusMux_In_MDR, BusMux_Out, MData_In, Read, Clear, Clock, MDR_In);
 
 // Memory Access Register
 Register32 MAR (MAR_Out, BusMux_Out, Clear, Clock, MAR_In);
 
 // Arithmetic Logic Unit
-ALU ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear Clock);
+ArithmeticLogicUnit ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear Clock);
 
 // 32-Bit Bus
-Bus Bus (BusMux_Out, 
+Bus32 Bus (BusMux_Out, 
          BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C, 
          R0_Out, R1_Out, R2_Out, R3_Out, R4_Out, R5_Out, R6_Out, R7_Out, R8_Out, R9_Out, R10_Out, R11_Out, R12_Out, R13_Out, R14_Out, R15_Out, HI_Out, LO_Out, ZHI_Out, ZLO_Out, PC_Out, MDR_Out, InPort_Out, C_out
         );

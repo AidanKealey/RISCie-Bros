@@ -1,6 +1,6 @@
 // General 32-Bit Register
 
-module Register32 (
+module PCRegister (
   output reg [31:0] q,
   input [31:0] d,
   input clr, clk, write, increment
@@ -14,4 +14,4 @@ module Register32 (
     else if (increment)
         q = q + 1;
    end
-endmodule // Register32
+endmodule // PCRegister

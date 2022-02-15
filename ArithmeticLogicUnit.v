@@ -1,6 +1,6 @@
 // Arithmetic Logic Unit
 
-module ALU (
+module ArithmeticLogicUnit (
     output reg [31:0] ZHI, ZLO,
     input [31:0] A, B,
 	input [3:0] ctrl,
@@ -58,4 +58,4 @@ module ALU (
             default : begin end             // Default (Do Nothing)
         endcase
     end
-endmodule // ALU
+endmodule // ArithmeticLogicUnit
