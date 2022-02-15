@@ -8,6 +8,6 @@ module MDR (
   
   wire [31:0] MDMux_Out;
   
-  MUX MDMux (MDMux_Out, BusMux_Out, MData_In, Read);
+  Mux MDMux (MDMux_Out, BusMux_Out, MData_In, Read);
   Register32 MDR (MDR_Out, MDMux_Out, Clear, Clock, MDR_In);
 endmodule // MDR

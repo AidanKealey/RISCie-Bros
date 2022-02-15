@@ -1,10 +1,11 @@
 // Arithmetic Logic Unit
 
-module ALU (ZHI, ZLO, A, B, ctrl, clr, clk);
-    output reg [31:0] ZHI, ZLO;
-    input [31:0] A, B;
-	input [3:0] ctrl;
-	input clr, clk;
+module ALU (
+    output reg [31:0] ZHI, ZLO,
+    input [31:0] A, B,
+	input [3:0] ctrl,
+	input clr, clk
+);
 
     always @ (*) begin
         case(ctrl)
@@ -41,11 +42,10 @@ module ALU (ZHI, ZLO, A, B, ctrl, clr, clk);
                 ZHI  <= 32'd0;
             end
             4'b0011 : begin                 // Divide
-                DivisionAlgorithm Devide (ZLO, ZHI, A, B);
+                // Division Algorithm
             end
             4'b0010 : begin                 // Multiply
-                ZLO = A * B; 
-                ZHI = {{32'd0, A} * B} >> 32;
+                // Booth Algorithm
             end
             4'b0001 : begin                 // Subract
                 ZLO <= A - B; 
