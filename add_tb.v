@@ -1,6 +1,6 @@
 // and datapath_tb.v file: <This is the filename> 
 `timescale 1ns/10ps 
-module datapath_tb;
+module add_tb;
     reg  PCout, Zlowout, MDRout, R2out, R4out;           // add any other signals to see in your simulation 
     reg  MARin, PCin, MDRin, IRin, Yin;    
     reg  IncPC, Read, ADD, R5in, R2in, R4in; 
@@ -12,7 +12,7 @@ module datapath_tb;
                             T1 = 4'b1000, T2 = 4'b1001, T3 = 4'b1010, T4 = 4'b1011, T5 = 4'b1100; 
     reg   [3:0] Present_state = Default; 
  
-    Datapath DUT(, .R2_Out(R2out), .R4_Out(R4out), 
+    Datapath DUT(.R2_Out(R2out), .R4_Out(R4out), 
                  .R2_In(R2in), .R4_In(R4in), .R5_In(R5in),
                  .PC_Out(PCout), .ZLO_Out(Zlowout), .MDR_Out(MDRout), .MAR_In(MARin),
                  .PC_In(PCin), .MDR_In(MDRin), .IR_In(IRin), .Y_In(Yin), .IncPC(IncPC), .Read(Read), .CONTROL(ADD),
@@ -86,7 +86,7 @@ module datapath_tb;
                 end 
                 T1: begin 
                     Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;   
-                    Mdatain <= 32'b0;       // opcode for “and R5, R2, R4” 
+                    Mdatain <= 32'b0;       // opcode for “add R5, R2, R4” 
                 end 
                 T2: begin 
                     MDRout <= 1; IRin <= 1;    

@@ -5,7 +5,7 @@ module MUL(cHI, cLow, a, b, clk);
     input signed [31:0] a, b;
     input clk;
 
-    wire [31:0] neg_a, pos_two_a, neg_two_a;
+    wire [31:0] twos_a, double_a, twos_double__a;
     wire [2:0] boi; // bits of interest
 
     // hold the output value
