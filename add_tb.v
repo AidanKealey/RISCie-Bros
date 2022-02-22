@@ -6,7 +6,7 @@ module add_tb;
     reg  IncPC, Read, R5in, R2in, R4in, Zin; 
     reg  Clock; 
     reg  [31:0] Mdatain;
-	reg	[3:0] ADD;
+	 reg	[4:0] ctl;
 	 
 	 wire [31:0] BusMux_Out;
 	 // Register == Write/Read (State)
@@ -22,7 +22,7 @@ module add_tb;
     Datapath DUT(.R2_Out(R2out), .R4_Out(R4out),
                  .R2_In(R2in), .R4_In(R4in), .R5_In(R5in),
                  .PC_Out(PCout), .ZLO_Out(Zlowout), .MDR_Out(MDRout), .MAR_In(MARin),
-                 .PC_In(PCin), .MDR_In(MDRin), .IR_In(IRin), .Y_In(Yin), .IncPC(IncPC), .Read(Read), .CONTROL(ADD),
+                 .PC_In(PCin), .MDR_In(MDRin), .IR_In(IRin), .Y_In(Yin), .IncPC(IncPC), .Read(Read), .CONTROL(ctl),
                  .Clock(Clock), .MData_In(Mdatain), .Z_In(Zin), .BusMux_Out(BusMux_Out)); 
  
     // add test logic here 
@@ -57,7 +57,7 @@ module add_tb;
                     PCout <= 0;   Zlowout <= 0;   MDRout <= 0;          // initialize the signals 
                     R2out <= 0;   R4out <= 0;   MARin <= 0;   Zin <= 0;   
                     PCin <=0;   MDRin <= 0;   IRin  <= 0;   Yin <= 0;   
-                    IncPC <= 0;   Read <= 0;   ADD <= 0; 
+                    IncPC <= 0;   Read <= 0;   ctl <= 0; 
                     R5in <= 0; R2in <= 0; R4in <= 0; Mdatain <= 32'h00000000; 
                 end 
                 Reg_load1a: begin   
@@ -94,7 +94,10 @@ module add_tb;
                 end 
                 T1: begin 
                     Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;   
-                    Mdatain <= 32'h4A920000;       // opcode for “and R5, R2, R4” 
+                    Mdatain <= 32'h4A920000;       // opcode for ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œadd R5, R2, R4ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â
+                    //                                           //
+                    // MAYBE TRY CHANGING THE OP CODE IN THE ALU //
+                    //                                           //
 						  #10 Zlowout <= 0; PCin <= 0; Read <= 0; MDRin <= 0;
                 end 
                 T2: begin 
@@ -102,16 +105,16 @@ module add_tb;
 						  #10 MDRout <= 0; IRin <= 0;
                 end 
                 T3: begin 
-                    R2out <= 1; Yin <= 1;
-						  #10 R2out <= 0; Yin <= 0;
+                    #10 R2out <= 1; Yin <= 1;
+						  #15 R2out <= 0; Yin <= 0;
                 end 
                 T4: begin 
-                    R4out <= 1; ADD <= 1; Zin <= 1;
-						  #10 R4out <= 0; ADD <= 4'b0001; Zin <= 0;
+                    R4out <= 1; ctl <= 5'b0000; Zin <= 1;
+						  #25 R4out <= 0; Zin <= 0;
                 end 
                 T5: begin 
                     Zlowout <= 1; R5in <= 1;
-						  #10 Zlowout <= 0; R5in <= 0;
+						  #25 Zlowout <= 0; R5in <= 0;
                 end 
         endcase 
     end 
