@@ -70,7 +70,7 @@ module MUL(cHI, cLOW, a, b, clk);
             default : begin end
         endcase
         i = i + 2;
-	p <= k;
+		  p <= k;
     end
 	 // output
 	 assign cLOW = C; // bottom 32-bits
