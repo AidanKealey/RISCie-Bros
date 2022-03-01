@@ -6,11 +6,7 @@ module add_tb;
     reg  IncPC, Read, R5in, R2in, R4in, Zin; 
     reg  Clock; 
     reg  [31:0] Mdatain;
-<<<<<<< HEAD
 	reg	[4:0] ctl;
-=======
-	 reg	[4:0] ctl;
->>>>>>> 824e4837cad0be638249fb8e149caca7f4da90a5
 	 
 	 wire [31:0] BusMux_Out;
 	 // Register == Write/Read (State)
