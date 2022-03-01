@@ -3,7 +3,7 @@
 module Datapath(
 	output [31:0] BusMux_Out,
     input [31:0] MData_In,
-    input [3:0] CONTROL,
+    input [4:0] CONTROL,
     input Clock, Clear, IncPC, Read,
     input PC_Out, MDR_Out, ZHI_Out, ZLO_Out,
     input PC_In, MDR_In, MAR_In, IR_In, Y_In, Z_In, InPort_In,
@@ -58,6 +58,11 @@ Register32 MAR (MAR_Out, BusMux_Out, Clear, Clock, MAR_In);
 
 // Arithmetic Logic Unit
 ArithmeticLogicUnit ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear, Clock);
+
+// maybe we should try and do it this way instead of the way above
+// ArithmeticLogicUnit AND ()
+// ArithmeticLogicUnit OR ()
+// ...
 
 // 32-Bit Register ZHI
 Register32 ZHI (BusMux_In_ZHI, ZHI_Data, Clear, Clock, Z_In);

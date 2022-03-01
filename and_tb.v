@@ -1,13 +1,15 @@
 // add testbench
 `timescale 1ns/10ps 
-module add_tb;
+module and_tb;
     reg  PCout, Zlowout, MDRout, R2out, R4out;           // add any other signals to see in your simulation 
     reg  MARin, PCin, MDRin, IRin, Yin;    
     reg  IncPC, Read, R5in, R2in, R4in, Zin; 
     reg  Clock; 
     reg  [31:0] Mdatain;
-	reg	[4:0] ctl;
-	 
+	reg	[4:0] ctl; // maybe we should check this out, in phase 1 they have this as a signal
+                   // maybe we should have this as a signal and then in the datapath have it do something
+                   // but then again we could have done it differently then the way he did it
+
 	 wire [31:0] BusMux_Out;
 	 // Register == Write/Read (State)
 	 // Wire == Read (Data Flow)
@@ -22,7 +24,7 @@ module add_tb;
     Datapath DUT(.R2_Out(R2out), .R4_Out(R4out),
                  .R2_In(R2in), .R4_In(R4in), .R5_In(R5in),
                  .PC_Out(PCout), .ZLO_Out(Zlowout), .MDR_Out(MDRout), .MAR_In(MARin),
-                 .PC_In(PCin), .MDR_In(MDRin), .IR_In(IRin), .Y_In(Yin), .IncPC(IncPC), .Read(Read), .CONTROL(ctl),
+                 .PC_In(PCin), .MDR_In(MDRin), .IR_In(IRin), .Y_In(Yin), .IncPC(IncPC), .Read(Read), .CONTROL(ctl)),
                  .Clock(Clock), .MData_In(Mdatain), .Z_In(Zin), .BusMux_Out(BusMux_Out)); 
  
     // add test logic here 
@@ -94,10 +96,7 @@ module add_tb;
                 end 
                 T1: begin 
                     Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;   
-                    Mdatain <= 32'h4A920000;       // opcode for “add R5, R2, R4”
-                    //                                           //
-                    // MAYBE TRY CHANGING THE OP CODE IN THE ALU //
-                    //                                           //
+                    Mdatain <= 32'h4A920000;       // opcode for “and R5, R2, R4” 
 						  #10 Zlowout <= 0; PCin <= 0; Read <= 0; MDRin <= 0;
                 end 
                 T2: begin 
@@ -110,7 +109,7 @@ module add_tb;
                 end 
                 T4: begin 
                     R4out <= 1; ctl <= 1; Zin <= 1;
-						  #10 R4out <= 0; ctl <= 4'b0001; Zin <= 0;
+						  #10 R4out <= 0; ctl <= 5'b0001; Zin <= 0; //check ctl here
                 end 
                 T5: begin 
                     Zlowout <= 1; R5in <= 1;
