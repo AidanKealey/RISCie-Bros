@@ -1,6 +1,6 @@
 // Arithmetic Logic Unit
 
-module ALU (zHI, zLOW, A, B, ctrl, clr, clk, enable);
+module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
     output reg [31:0] zHI, zLOW;
     input [31:0] A, B;
 	input [4:0] ctrl;
@@ -47,8 +47,8 @@ module ALU (zHI, zLOW, A, B, ctrl, clr, clk, enable);
                 zHI  <= B - (A*(A/B));      // remainder
             end
             5'b00010 : begin                 // multiply
-                zLOW = moutLOW;
-                zHI = moutHI;
+                zLOW <= moutLOW;
+                zHI <= moutHI;
             end
             5'b00001 : begin                 // subract
                 zLOW <= A - B; 

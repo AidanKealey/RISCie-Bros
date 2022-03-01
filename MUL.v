@@ -1,35 +1,44 @@
 // Booth Algorithm for multiplication
 
-module MUL(cHI, cLow, a, b, clk);
-    output reg [31:0] cHI, cLOW;
+module MUL(cHI, cLOW, a, b, clk);
+    output [31:0] cHI, cLOW;
     input signed [31:0] a, b;
     input clk;
 
     wire [31:0] twos_a, double_a, twos_double__a;
-    wire [2:0] boi; // bits of interest
+    reg [2:0] boi; // bits of interest
 
     // hold the output value
-    wire reg [63:0] C;
+    reg [63:0] C;
 
     // keep count
-    interger i = 0;
+    integer i = 0;
+	 reg [0:0] j, k, p;
 
     // Multiplicand selected at position i
     assign twos_a = ~a + 1; // -M (or a)
     assign double_a = a + a; // +2*M ( or 2*a)
     assign twos_double_a = ~double_a + 1; // -2*M ( or -2*a)
 
-    // output
-    assign cHI = C >> 32; // top 32-bits
-    assign cLOW = C; // bottom 32-bits
-
     always @ (posedge clk) begin
+		  if (b[i] == 0) begin
+				j = 1'b0;
+		  end
+		  else begin
+				j = 1'b1;
+		  end
+		  if (b[i+1] == 0) begin
+				k = 1'b0;
+		  end
+		  else begin
+				k = 1'b1;
+		  end
         // determine the bits of interest at position i
         if (i == 0) begin
-            boi = {b[i+1], b[i], 0};
+            boi = {k, j, 1'b0};
         end
         else begin
-            boi = {b[i+1], b[i], b[i-1]};
+            boi = {k, j, p};
         end
         
         // preform the math
@@ -38,13 +47,13 @@ module MUL(cHI, cLow, a, b, clk);
                 C = C + 0;
             end
             3'b110 : begin
-                C = C + tows_a;
+                C = C + twos_a;
             end
             3'b101 : begin
-                C = C + tows_a;
+                C = C + twos_a;
             end
-            3b'100 : begin
-                C = C + tows_double_a;
+            3'b100 : begin
+                C = C + twos_double_a;
             end
             3'b011 : begin
                 C = C + double_a;
@@ -61,5 +70,9 @@ module MUL(cHI, cLow, a, b, clk);
             default : begin end
         endcase
         i = i + 2;
+		  p <= k;
     end
+	 // output
+	 assign cLOW = C; // bottom 32-bits
+    assign cHI = C >> 32; // top 32-bits
 endmodule   //MUL
