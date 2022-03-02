@@ -58,7 +58,7 @@ module add_tb;
                     R2out <= 0;   R4out <= 0;   MARin <= 0;   Zin <= 0;   
                     PCin <=0;   MDRin <= 0;   IRin  <= 0;   Yin <= 0;   
                     IncPC <= 0;   Read <= 0;   ctl <= 0; 
-                    R5in <= 0; R2in <= 0; R4in <= 0; Mdatain <= 32'h00000000; 
+                    R5in <= 0; R2in <= 0; R4in <= 0; Mdatain <= 32'h00000000;  clr <=1;
                 end 
                 Reg_load1a: begin   
                     Mdatain <= 32'h00000022; 
@@ -89,16 +89,16 @@ module add_tb;
                     #15 MDRout <= 0; R5in <= 0;  // initialize R5 with the value $26           
                 end 
                 T0: begin                        // see if you need to de-assert these signals 
-                    PCout <= 1; MARin <= 1; IncPC <= 1; Zin <= 1;   
-						  #10 PCout <= 0; MARin <= 0; IncPC <= 0; Zin <= 0;
+                    #10 PCout <= 1; MARin <= 1; IncPC <= 1; Zin <= 1;   
+                    #25 PCout <= 0; MARin <= 0; IncPC <= 0; Zin <= 0;
                 end 
                 T1: begin 
-                    Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;   
                     Mdatain <= 32'h4A920000;       // opcode for “add R5, R2, R4”
+                    #10 Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;   
                     //                                           //
                     // MAYBE TRY CHANGING THE OP CODE IN THE ALU //
                     //                                           //
-						  #10 Zlowout <= 0; PCin <= 0; Read <= 0; MDRin <= 0;
+						  #25 Zlowout <= 0; PCin <= 0; Read <= 0; MDRin <= 0;
                 end 
                 T2: begin 
                     MDRout <= 1; IRin <= 1;   

@@ -13,5 +13,7 @@ module PCRegister (
         q = d;
     else if (increment)
         q = q + 1;
+    else 
+      q = 32;
    end
 endmodule // PCRegister
