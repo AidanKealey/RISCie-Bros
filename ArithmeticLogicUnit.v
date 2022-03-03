@@ -6,7 +6,7 @@ module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
 	input [4:0] ctrl;
 	input clr, clk, enable;
 
-    wire [31:0] moutHI, moutLOW;
+    wire [31:0] moutHI, moutLOW, doutHI, doutLOW;
 
     always @ (*) begin
         case(ctrl)
@@ -43,8 +43,8 @@ module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
                 zHI  <= 32'd0;
             end
             5'b00011 : begin                 // divide
-                zLOW <= A / B;              // quotient
-                zHI  <= B - (A*(A/B));      // remainder
+                zLOW <= doutLOW[31:0];              // quotient
+                zHI  <= doutHI[31:0];      // remainder
             end
             5'b00010 : begin                 // multiply
                 zLOW <= moutLOW[31:0];
@@ -64,5 +64,5 @@ module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
 
     // operations
     MUL mul(moutHI, moutLOW, A, B, clk);
-    // Division();
+    Division div(doutHI, doutLOW, A, B);
 endmodule // ALU
