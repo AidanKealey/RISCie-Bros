@@ -109,7 +109,7 @@ module shift_tb;
 						#15 R2out <= 0; Yin <= 0;
                 end 
                 T4: begin 
-                    ctl <= 5'b1001; Zin <= 1;
+                    ctl <= 5'b0101; Zin <= 1;
 						#25 Zin <= 0;
                 end 
                 T5: begin 
