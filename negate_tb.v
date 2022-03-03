@@ -74,13 +74,13 @@ module negate_tb;
                         #15 MDRout <= 0; R2in <= 0;     // initialize R2 with the value $22           
                 end 
                 Reg_load2a: begin   
-                    // Mdatain <= 32'h00000024; 
-                    // #10 Read <= 1; MDRin <= 1;   
-                    //     #15 Read <= 0; MDRin <= 0;       
+                    Mdatain <= 32'h00000024; 
+                    #10 Read <= 1; MDRin <= 1;   
+                        #15 Read <= 0; MDRin <= 0;       
                 end 
                 Reg_load2b: begin  
-                    // #10 MDRout <= 1; R4in <= 1;   
-                    //     #15 MDRout <= 0; R4in <= 0;  // initialize R4 with the value $24           
+                    #10 MDRout <= 1; R4in <= 1;   
+                        #15 MDRout <= 0; R4in <= 0;  // initialize R4 with the value $24           
                 end 
                 Reg_load3a: begin   
                     Mdatain <= 32'h00000026; 
@@ -105,9 +105,9 @@ module negate_tb;
 						#10 MDRout <= 0; IRin <= 0;
                 end 
                 T3: begin 
-                    #10 R2out <= 1; ctl <= 5'b1010; Zin <= 1;
-						#15 R2out <= 0;
-                        #10 Zin <= 0;
+                    #10 R2out <= 1; 
+                        #10 ctl <= 5'b1010; Zin <= 1;
+						#10 R2out <= 0; Zin <= 0;
                 end 
                 T4: begin 
                     Zlowout <= 1; R5in <= 1;

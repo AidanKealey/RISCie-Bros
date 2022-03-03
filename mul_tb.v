@@ -4,7 +4,7 @@ module mul_tb;
     reg  PCout, Zlowout, Zhighout MDRout, R2out, R4out;           // add any other signals to see in your simulation 
     reg  MARin, PCin, MDRin, IRin, Yin;    
     reg  IncPC, Read, R2in, R4in, Zin; 
-    reg  LOin, HIin;
+    reg  R5in, R6in;
     reg  Clock, Clear;
     reg  [31:0] Mdatain;
 	reg	[4:0] ctl;
@@ -22,7 +22,7 @@ module mul_tb;
     reg   [3:0] Present_state = Default; 
  
     Datapath DUT(.R2_Out(R2out), .R4_Out(R4out),
-                 .R2_In(R2in), .R4_In(R4in), .R5_In(R5in), // need to get a HIin and LOin
+                 .R2_In(R2in), .R4_In(R4in), .R5_In(R5in), .R6_In(R6in), // need to get a HIin and LOin
                  .PC_Out(PCout), .ZLO_Out(Zlowout), .ZHI_Out(Zhighout), .MDR_Out(MDRout), .MAR_In(MARin),
                  .PC_In(PCin), .MDR_In(MDRin), .IR_In(IRin), .Y_In(Yin), .IncPC(IncPC), .Read(Read), .CONTROL(ctl),
                  .Clock(Clock), .MData_In(Mdatain), .Z_In(Zin), .BusMux_Out(BusMux_Out), .Clear(Clear)); 
@@ -61,7 +61,7 @@ module mul_tb;
                     R2out <= 0;   R4out <= 0;   MARin <= 0;   Zin <= 0;   
                     PCin <=0;   MDRin <= 0;   IRin  <= 0;   Yin <= 0;   
                     IncPC <= 0;   Read <= 0;   ctl <= 0; 
-                    LOin <= 0;   HIin <= 0;   R2in <= 0;   R4in <= 0;   Mdatain <= 32'h00000000;
+                    R6in <= 0;   R5in <= 0;   R2in <= 0;   R4in <= 0;   Mdatain <= 32'h00000000;
                     Clear <= 0;
 						#15 Clear <= 1;
                 end 
@@ -90,8 +90,8 @@ module mul_tb;
                     #15 Read <= 0; MDRin <= 0; 
                 end 
                 Reg_load3b: begin  
-                    #10 MDRout <= 1; R5in <= 1;   
-                    #15 MDRout <= 0; R5in <= 0;  // initialize R5 with the value $26           
+                    #10 MDRout <= 1; R5in <= 1; R6in <= 1;  
+                    #15 MDRout <= 0; R5in <= 0; R6in <= 0; // initialize R5 with the value $26           
                 end 
                 T0: begin                        // see if you need to de-assert these signals 
                     #10 PCout <= 1; MARin <= 1; IncPC <= 1; Zin <= 1;   
@@ -115,12 +115,12 @@ module mul_tb;
 						#25 R4out <= 0; Zin <= 0;
                 end 
                 T5: begin 
-                    Zlowout <= 1; LOin <= 1;
-						#25 Zlowout <= 0; LOin <= 0;
+                    Zlowout <= 1; R5in <= 1;
+						#25 Zlowout <= 0; R5in <= 0;
                 end 
                 T6: begin
-                    Zhighout <= 1; HIin <= 1;
-                        #25 Zhighout <= 0; HIin <= 0;
+                    Zhighout <= 1; R6in <= 1;
+                        #25 Zhighout <= 0; R6in <= 0;
                 end
         endcase 
     end 
