@@ -1,4 +1,4 @@
-// add testbench
+// shift testbench
 `timescale 1ns/10ps 
 module shift_tb;
     reg  PCout, Zlowout, MDRout, R2out;           // add any other signals to see in your simulation 
