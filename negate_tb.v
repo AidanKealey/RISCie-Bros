@@ -1,6 +1,6 @@
 // negate testbench
 `timescale 1ns/10ps 
-module neg_tb;
+module negate_tb;
     reg  PCout, Zlowout, MDRout, R2out;           // add any other signals to see in your simulation 
     reg  MARin, PCin, MDRin, IRin;    
     reg  IncPC, Read, R5in, R2in, Zin; 
