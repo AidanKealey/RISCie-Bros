@@ -1,7 +1,7 @@
 // Single-Bus Mini SRC Datapath
 
 module Datapath(
-	 output [31:0] BusMux_Out,
+	output [31:0] BusMux_Out,
     input [31:0] MData_In,
     input [4:0] CONTROL,
     input Clock, Clear, IncPC, Read,
@@ -59,17 +59,11 @@ Register32 #(0) MAR (MAR_Out, BusMux_Out, Clear, Clock, MAR_In);
 // Arithmetic Logic Unit
 ArithmeticLogicUnit ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear, Clock);
 
-// maybe we should try and do it this way instead of the way above
-// ArithmeticLogicUnit AND ()
-// ArithmeticLogicUnit OR ()
-// ...
-
 // 32-Bit Register ZHI
 Register32 #(0) ZHI (BusMux_In_ZHI, ZHI_Data, Clear, Clock, Z_In);
 
 // 32-Bit Register ZIN_LO
 Register32 #(0) ZLO (BusMux_In_ZLO, ZLO_Data, Clear, Clock, Z_In);
-
 
 // 32-Bit Bus
 Bus32 Bus (BusMux_Out, 

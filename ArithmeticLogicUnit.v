@@ -3,19 +3,19 @@
 module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
     output reg [31:0] zHI, zLOW;
     input [31:0] A, B;
-	 input [4:0] ctrl;
-	 input clr, clk, enable;
+	input [4:0] ctrl;
+	input clr, clk, enable;
 
     wire [31:0] moutHI, moutLOW;
 
     always @ (*) begin
         case(ctrl)
             5'b01011 : begin                 // not
-                zLOW <= ! A; 
+                zLOW <= ~ A; 
                 zHI  <= 32'd0;
             end
             5'b01010 : begin                 // negate
-                zLOW <= ~ A; 
+                zLOW <= ~ A + 1; 
                 zHI  <= 32'd0;
             end
             5'b01001 : begin                 // or
@@ -47,8 +47,8 @@ module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
                 zHI  <= B - (A*(A/B));      // remainder
             end
             5'b00010 : begin                 // multiply
-                zLOW <= moutLOW;
-                zHI <= moutHI;
+                zLOW <= moutLOW[31:0];
+                zHI <= moutHI[31:0];
             end
             5'b00001 : begin                 // subract
                 zLOW <= A - B; 
@@ -61,6 +61,8 @@ module ArithmeticLogicUnit (zHI, zLOW, A, B, ctrl, clr, clk, enable);
             default : begin end             // default case (do nothing)
         endcase
     end
+
     // operations
     MUL mul(moutHI, moutLOW, A, B, clk);
+    // Division();
 endmodule // ALU

@@ -5,7 +5,7 @@ module MUL(cHI, cLOW, a, b, clk);
     input signed [31:0] a, b;
     input clk;
 
-    wire [31:0] twos_a, double_a, twos_double__a;
+    wire [31:0] twos_a, double_a, twos_double_a;
     reg [2:0] boi; // bits of interest
 
     // hold the output value
@@ -40,8 +40,8 @@ module MUL(cHI, cLOW, a, b, clk);
         else begin
             boi = {k, j, p};
         end
-        
-        // preform the math
+
+        // add to the total
         case (boi) 
             3'b111 : begin
                 C = C + 0;
@@ -72,7 +72,7 @@ module MUL(cHI, cLOW, a, b, clk);
         i = i + 2;
 		  p <= k;
     end
-	 // output
-	 assign cLOW = C; // bottom 32-bits
+	// output
+	assign cLOW = C; // bottom 32-bits
     assign cHI = C >> 32; // top 32-bits
 endmodule   //MUL
