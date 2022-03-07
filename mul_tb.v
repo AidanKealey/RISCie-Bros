@@ -1,13 +1,13 @@
 // add testbench
 `timescale 1ns/10ps 
 module mul_tb;
-    reg  PCout, Zlowout, Zhighout MDRout, R2out, R4out;           // add any other signals to see in your simulation 
+    reg  PCout, Zlowout, Zhighout, MDRout, R2out, R4out;           // add any other signals to see in your simulation 
     reg  MARin, PCin, MDRin, IRin, Yin;    
     reg  IncPC, Read, R2in, R4in, Zin; 
     reg  R5in, R6in;
     reg  Clock, Clear;
     reg  [31:0] Mdatain;
-	reg	[4:0] ctl;
+	reg	 [4:0] ctl;
 
 	 
 	wire [31:0] BusMux_Out;
@@ -57,7 +57,7 @@ module mul_tb;
         begin 
             case (Present_state)               // assert the required signals in each clock cycle 
                 Default: begin 
-                    PCout <= 0;   Zlowout <= 0;   Zhigout <= 0;   MDRout <= 0;          // initialize the signals 
+                    PCout <= 0;   Zlowout <= 0;   Zhighout <= 0;   MDRout <= 0;          // initialize the signals 
                     R2out <= 0;   R4out <= 0;   MARin <= 0;   Zin <= 0;   
                     PCin <=0;   MDRin <= 0;   IRin  <= 0;   Yin <= 0;   
                     IncPC <= 0;   Read <= 0;   ctl <= 0; 

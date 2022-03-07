@@ -92,31 +92,28 @@ module add_tb;
                 end 
                 T0: begin                        // see if you need to de-assert these signals 
                     #10 PCout <= 1; MARin <= 1; IncPC <= 1; Zin <= 1;   
-						  #25 PCout <= 0; MARin <= 0; IncPC <= 0; Zin <= 0;
+						#25 PCout <= 0; MARin <= 0; IncPC <= 0; Zin <= 0;
                 end 
                 T1: begin 
-						  Mdatain <= 32'h4A920000;
+					Mdatain <= 32'h4A920000;
                     #10 Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;   
-						  //                                           //
-                    // MAYBE TRY CHANGING THE OP CODE IN THE ALU //
-                    //                                           //
-						  #25 Zlowout <= 0; PCin <= 0; Read <= 0; MDRin <= 0;
+						#25 Zlowout <= 0; PCin <= 0; Read <= 0; MDRin <= 0;
                 end 
                 T2: begin 
                     MDRout <= 1; IRin <= 1;   
-						  #10 MDRout <= 0; IRin <= 0;
+						#10 MDRout <= 0; IRin <= 0;
                 end 
                 T3: begin 
                     #10 R2out <= 1; Yin <= 1;
-						  #15 R2out <= 0; Yin <= 0;
+						#15 R2out <= 0; Yin <= 0;
                 end 
                 T4: begin 
                     R4out <= 1; ctl <= 5'b1001; Zin <= 1;
-						  #25 R4out <= 0; Zin <= 0;
+						#25 R4out <= 0; Zin <= 0;
                 end 
                 T5: begin 
-                    Zlowout <= 1; R5in <= 1;
-						  #25 Zlowout <= 0; R5in <= 0;
+                    Zlowout <= 1; R5in <= 1`;
+						#25 Zlowout <= 0; R5in <= 0;
                 end 
         endcase 
     end 

@@ -9,7 +9,7 @@ module MUL(cHI, cLOW, a, b, clk);
     reg [2:0] boi; // bits of interest
 
     // hold the output value
-    reg [63:0] C;
+    wire reg [63:0] C;
 
     // keep count
     integer i = 0;
@@ -20,7 +20,7 @@ module MUL(cHI, cLOW, a, b, clk);
     assign double_a = a + a; // +2*M ( or 2*a)
     assign twos_double_a = ~double_a + 1; // -2*M ( or -2*a)
 
-    always @ (posedge clk) begin
+    for(i = 0; i < 32; i = i + 2) begin
 		  if (b[i] == 0) begin
 				j = 1'b0;
 		  end
@@ -69,7 +69,6 @@ module MUL(cHI, cLOW, a, b, clk);
             end
             default : begin end
         endcase
-        i = i + 2;
 		  p <= k;
     end
 	// output

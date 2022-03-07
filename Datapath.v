@@ -11,9 +11,9 @@ module Datapath(
     input R0_In, R1_In, R2_In, R3_In, R4_In, R5_In, R6_In, R7_In, R8_In, R9_In, R10_In, R11_In, R12_In, R13_In, R14_In, R15_In
 );
 
-wire[31:0] BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C;
-wire[31:0] Y_Data;
-wire[31:0] ZHI_Data, ZLO_Data;
+wire [31:0] BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C;
+wire [31:0] Y_Data;
+wire [31:0] ZHI_Data, ZLO_Data;
 wire IR_Out;
 wire MAR_Out;
 
