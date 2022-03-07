@@ -9,5 +9,5 @@ module MDRegister (
   wire [31:0] MDMux_Out;
   
   Multiplexer MDMux (MDMux_Out, BusMux_Out, MData_In, Read);
-  Register32 MDR (MDR_Out, MDMux_Out, Clear, Clock, MDR_In);
+  Register MDR (MDR_Out, MDMux_Out, Clear, Clock, MDR_In);
 endmodule // MDRegister
