@@ -57,6 +57,6 @@ always @ (*) begin
         BusMux_Out = BusMux_In_C;
     else
         begin 
-		  end
+        end
     end
 endmodule // Bus

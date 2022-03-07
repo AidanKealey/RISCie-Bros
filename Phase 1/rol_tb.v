@@ -75,13 +75,13 @@ module rol_tb;
                     #15 MDRout <= 0; R2in <= 0; // initialize R2 with the value 3758096384          
                 end 
                 Reg_load2a: begin   
-                    Mdatain <= 32'd2; 
+                    Mdatain <= 32'd5; 
                     #10 Read <= 1; MDRin <= 1;   
                     #15 Read <= 0; MDRin <= 0;       
                 end 
                 Reg_load2b: begin  
                     #10 MDRout <= 1; R4in <= 1;   
-                    #15 MDRout <= 0; R4in <= 0; // initialize R4 with the value 2          
+                    #15 MDRout <= 0; R4in <= 0; // initialize R4 with the value 5          
                 end 
                 Reg_load3a: begin   
                     Mdatain <= 32'd32; 

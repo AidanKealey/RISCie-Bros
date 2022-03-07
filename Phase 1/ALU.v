@@ -7,6 +7,11 @@ module ALU (ZHI, ZLO, A, B, ctrl, clr, clk, enable);
     input clr, clk, enable;
 
     reg [63:0] C;
+    wire [31:0] ROL_Out;
+    wire [31:0] ROR_Out;
+
+    ROL ROL (.C(ROL_Out), .A(A), .B(B));
+    ROR ROR (.C(ROR_Out), .A(A), .B(B));
 
     always @ (*) begin
         case(ctrl)
@@ -27,11 +32,11 @@ module ALU (ZHI, ZLO, A, B, ctrl, clr, clk, enable);
                 ZHI  <= 32'd0;
             end 
             5'b00111 : begin                // rotate left
-                ZLO <= {A[30:0], A[31]}; 
+                ZLO <= ROL_Out; 
                 ZHI <= 32'd0;
             end
             5'b00110 : begin                // rotate right
-                ZLO <= {A[0], A[31:1]}; 
+                ZLO <= ROR_Out; 
                 ZHI <= 32'd0;
             end
             5'b00101 : begin                // shift left
