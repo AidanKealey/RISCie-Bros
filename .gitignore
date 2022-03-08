@@ -1,0 +1,5 @@
+# VSCode
+*.vscode
+
+# Desktop Services Store
+*.DS_Store
