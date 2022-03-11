@@ -3,41 +3,43 @@
 module Bus (
     output reg [31:0] BusMux_Out, 
     input [31:0] BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C,
-    input R0_Out, R1_Out, R2_Out, R3_Out, R4_Out, R5_Out, R6_Out, R7_Out, R8_Out, R9_Out, R10_Out, R11_Out, R12_Out, R13_Out, R14_Out, R15_Out, HI_Out, LO_Out, ZHI_Out, ZLO_Out, PC_Out, MDR_Out, InPort_Out, C_Out
+    //input R0_Out, R1_Out, R2_Out, R3_Out, R4_Out, R5_Out, R6_Out, R7_Out, R8_Out, R9_Out, R10_Out, R11_Out, R12_Out, R13_Out, R14_Out, R15_Out, 
+    input HI_Out, LO_Out, ZHI_Out, ZLO_Out, PC_Out, MDR_Out, InPort_Out, C_Out,
+    input [15:0] RX_Out
     );
 
 always @ (*) begin
-    if (R0_Out)
+    if (RX_Out[0]) // AK
         BusMux_Out = BusMux_In_R0;
-    else if (R1_Out) 
+    else if (RX_Out[1]) // AK
         BusMux_Out = BusMux_In_R1;
-    else if (R2_Out)
+    else if (RX_Out[2]) // AK
         BusMux_Out = BusMux_In_R2;
-    else if (R3_Out)
+    else if (RX_Out[3]) // AK
         BusMux_Out = BusMux_In_R3;
-    else if (R4_Out)
+    else if (RX_Out[4]) // AK
         BusMux_Out = BusMux_In_R4;
-    else if (R5_Out)
+    else if (RX_Out[5]) // AK
         BusMux_Out = BusMux_In_R5;
-    else if (R6_Out)
+    else if (RX_Out[6]) // AK
         BusMux_Out = BusMux_In_R6;    
-    else if (R7_Out)
+    else if (RX_Out[7]) // AK
         BusMux_Out = BusMux_In_R7;  
-    else if (R8_Out)
+    else if (RX_Out[8]) // AK
         BusMux_Out = BusMux_In_R8;  
-    else if (R9_Out)
+    else if (RX_Out[9]) // AK
         BusMux_Out = BusMux_In_R9;
-    else if (R10_Out)
+    else if (RX_Out[10]) // AK
         BusMux_Out = BusMux_In_R10;    
-    else if (R11_Out)
+    else if (RX_Out[11]) // AK
         BusMux_Out = BusMux_In_R11;
-    else if (R12_Out)
+    else if (RX_Out[12]) // AK
         BusMux_Out = BusMux_In_R12;
-    else if (R13_Out)
+    else if (RX_Out[13]) // AK
         BusMux_Out = BusMux_In_R13;
-    else if (R14_Out)
+    else if (RX_Out[14]) // AK
         BusMux_Out = BusMux_In_R14;
-    else if (R15_Out)
+    else if (RX_Out[15]) // AK
         BusMux_Out = BusMux_In_R15;
     else if (HI_Out)
         BusMux_Out = BusMux_In_HI;

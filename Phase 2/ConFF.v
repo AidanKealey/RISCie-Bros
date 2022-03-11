@@ -1,4 +1,4 @@
-//  CONFF
+// Conditional Branch Instruction 
 
 module ConFF(
     output q,
@@ -34,4 +34,4 @@ always @ (conIn) begin
                 q = 0;
         end
 end
-endmodule //    CONFF
+endmodule   // CONFF
