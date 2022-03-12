@@ -48,8 +48,8 @@ module ALU (ZHI, ZLO, A, B, ctrl, clr, clk, enable);
                 ZHI <= 32'd0;
             end
             5'b00011 : begin                // divide
-                ZLO = A / B;                // quotient
-                ZHI = A % B;                // remainder
+                ZLO = A / B;
+                ZHI = A % B;
             end
             5'b00010 : begin                // multiply
                 C = A * B;

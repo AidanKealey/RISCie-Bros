@@ -1,7 +1,7 @@
 // Zero Register
 
 module ZeroRegister (
-    output [31:0] BusMux_In_R0
+    output [31:0] BusMux_In_R0,
     input [31:0] BusMux_Out,
     input Clear, Clock, R0_In, BA_Out
 );
