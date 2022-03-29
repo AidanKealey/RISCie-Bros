@@ -5,7 +5,7 @@ module Datapath (
    output [31:0] OutData,
    output ConFF_Out,
    input [31:0] InData,
-   input [4:0] CONTROL,
+   input [11:0] CONTROL,
    input Clock, Clear, IncPC, Read, Write,
    input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, C_Out, InPort_Out,
    input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, ConFF_In,
@@ -20,7 +20,23 @@ module Datapath (
 	wire [15:0] RX_Out;
 	wire [15:0] RX_In;
 	wire [8:0] MAR_Out;
+	wire ADD, SUB, MUL, DIV, SHR, SHL, ROR, ROL, AND, OR, NEG, NOT;
+	wire [11:0] CONTROL;
 
+	// ALU control decoding
+	assign CONTROL[0] = ADD;
+	assign CONTROL[1] = SUB;
+	assign CONTROL[2] = MUL;
+	assign CONTROL[3] = DIV;
+	assign CONTROL[4] = SHR;
+	assign CONTROL[5] = SHL;
+	assign CONTROL[6] = ROR;
+	assign CONTROL[7] = ROL;
+	assign CONTROL[8] = AND;
+	assign CONTROL[9] = OR;
+	assign CONTROL[10] = NEG;
+	assign CONTROL[11] = NOT;
+	
 	// General Purpose 32-Bit Registers
 	ZeroRegister R0 (BusMux_In_R0, BusMux_Out, Clear, Clock, RX_In[0], BA_Out);
 	Register #(0) R1 (BusMux_In_R1, BusMux_Out, Clear, Clock, RX_In[1]);
