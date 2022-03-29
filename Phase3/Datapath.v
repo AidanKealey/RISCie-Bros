@@ -5,7 +5,6 @@ module Datapath (
    output [31:0] OutData,
    output ConFF_Out,
    input [31:0] InData,
-   input [11:0] CONTROL,
    input Clock, Clear, IncPC, Read, Write,
    input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, C_Out, InPort_Out,
    input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, ConFF_In,
