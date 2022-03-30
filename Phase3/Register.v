@@ -1,6 +1,6 @@
 // General 32-Bit Register
 
-module Register #(parameter val)(
+module Register #(parameter val) (
 	output reg [31:0] q,
 	input [31:0] d,
 	input clr, clk, enable

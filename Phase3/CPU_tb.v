@@ -6,11 +6,12 @@ module CPU_tb;
     input reg [31:0] Input_Data;
     input reg Clock, Reset, Stop;
 
-    CPU DUT (OutData,
-             Run, 
-             Input_Data,
-             Clock, Reset, Stop
-            );
+    CPU DUT (
+        OutData,
+        Run, 
+        Input_Data,
+        Clock, Reset, Stop
+        );
 
     initial begin
         Run = 0;

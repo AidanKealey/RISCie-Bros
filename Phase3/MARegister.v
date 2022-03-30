@@ -2,8 +2,8 @@
 
 module MARegister #(parameter val = 0) (
 	output reg [8:0] q,
-   input [31:0] d,
-   input clr, clk, enable
+   	input [31:0] d,
+  	input clr, clk, enable
 	);
   
 	always @ (posedge clk) begin

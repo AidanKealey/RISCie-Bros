@@ -1,18 +1,19 @@
 // Single-Bus Mini SRC Datapath
 
-module Datapath (output [31:0] Output_Data,
-				 output [31:0] IR_Data,
-				 output [31:0] BusMux_In_MDR,
-				 output [8:0] MAR_Data,
-   				 output ConFF_Out,
-   				 input [31:0] Input_Data,
-				 input [31:0] RAM_Data,
-   				 input Clear, Clock, Read, Write, IncPC,
-  				 input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, C_Out, InPort_Out,
-   				 input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, ConFF_In,
-				 input ADD, SUB, SHR, SHL, ROR, ROL, AND, OR, MUL, DIV, NEG, NOT,
-   				 input G_RA, G_RB, G_RC, R_In, R_Out, BA_Out
-				);
+module Datapath (
+	output [31:0] Output_Data,
+	output [31:0] IR_Data,
+	output [31:0] BusMux_In_MDR,
+	output [8:0] MAR_Data,
+	output ConFF_Out,
+   	input [31:0] Input_Data,
+	input [31:0] RAM_Data,
+   	input Clear, Clock, Read, Write, IncPC,
+	input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, C_Out, InPort_Out,
+   	input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, ConFF_In,
+	input ADD, SUB, SHR, SHL, ROR, ROL, AND, OR, MUL, DIV, NEG, NOT,
+   	input G_RA, G_RB, G_RC, R_In, R_Out, BA_Out
+	);
 
 	wire [31:0] BusMux_Out,
 	wire [31:0] BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_InPort, BusMux_In_C;
@@ -98,8 +99,9 @@ module Datapath (output [31:0] Output_Data,
 	ConFF #(0) ConFF (ConFF_Out, BusMux_Out, IR_Data, ConFF_In);
 
 	// 32-Bit Bus
-	Bus Bus (BusMux_Out, 
-			 BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C, 
-			 RX_Out[0], RX_Out[1], RX_Out[2], RX_Out[3], RX_Out[4], RX_Out[5], RX_Out[6], RX_Out[7], RX_Out[8], RX_Out[9], RX_Out[10], RX_Out[11], RX_Out[12], RX_Out[13], RX_Out[14], RX_Out[15], HI_Out, LO_Out, ZHI_Out, ZLO_Out, PC_Out, MDR_Out, InPort_Out, C_Out
-			);
+	Bus Bus (
+		BusMux_Out, 
+		BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C, 
+		RX_Out[0], RX_Out[1], RX_Out[2], RX_Out[3], RX_Out[4], RX_Out[5], RX_Out[6], RX_Out[7], RX_Out[8], RX_Out[9], RX_Out[10], RX_Out[11], RX_Out[12], RX_Out[13], RX_Out[14], RX_Out[15], HI_Out, LO_Out, ZHI_Out, ZLO_Out, PC_Out, MDR_Out, InPort_Out, C_Out
+		);
 endmodule // Datapath
