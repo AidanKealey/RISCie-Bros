@@ -1,11 +1,10 @@
 // Conditional Branch Logic
 
-module ConFF #(parameter val) (
-  	output reg q,
- 	input [31:0] d,
-   	input [31:0] IR_Out,
-	input ConFF_In
-	);
+module ConFF #(parameter val) (output reg q,
+   							   input [31:0] d,
+   							   input [31:0] IR_Out,
+							   input ConFF_In
+							  );
 
 	always @ (*) begin
 		if(ConFF_In)
@@ -37,6 +36,6 @@ module ConFF #(parameter val) (
 				default : begin	// default case (do nothing)
 					end
 			endcase
-   end
+ 	end
 	initial q = val; // assign initial value
 endmodule // ConFF

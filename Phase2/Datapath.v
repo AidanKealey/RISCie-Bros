@@ -1,16 +1,15 @@
 // Single-Bus Mini SRC Datapath
 
-module Datapath (
-   output [31:0] BusMux_Out,
-   output [31:0] OutData,
-   output ConFF_Out,
-   input [31:0] InData,
-   input [4:0] CONTROL,
-   input Clock, Clear, IncPC, Read, Write,
-   input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, InPort_Out,
-   input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, Con_In,
-   input G_RA, G_RB, G_RC, R_In, R_Out, BA_Out, C_Out
-	);
+module Datapath (output [31:0] BusMux_Out,
+   				 output [31:0] OutData,
+   				 output ConFF_Out,
+   				 input [31:0] InData,
+   				 input [4:0] CONTROL,
+   				 input Clock, Clear, IncPC, Read, Write,
+   				 input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, C_Out, InPort_Out,
+   				 input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, Con_In,
+   				 input G_RA, G_RB, G_RC, R_In, R_Out, BA_Out
+				);
 
 	wire [31:0] BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_MDR, BusMux_In_InPort, BusMux_In_C;
 	wire [31:0] Y_Data;
@@ -24,7 +23,7 @@ module Datapath (
 	// General Purpose 32-Bit Registers
 	ZeroRegister R0 (BusMux_In_R0, BusMux_Out, Clear, Clock, RX_In[0], BA_Out);
 	Register #(0) R1 (BusMux_In_R1, BusMux_Out, Clear, Clock, RX_In[1]);
-	Register #(1) R2 (BusMux_In_R2, BusMux_Out, Clear, Clock, RX_In[2]);
+	Register #(0) R2 (BusMux_In_R2, BusMux_Out, Clear, Clock, RX_In[2]);
 	Register #(0) R3 (BusMux_In_R3, BusMux_Out, Clear, Clock, RX_In[3]);
 	Register #(0) R4 (BusMux_In_R4, BusMux_Out, Clear, Clock, RX_In[4]);
 	Register #(0) R5 (BusMux_In_R5, BusMux_Out, Clear, Clock, RX_In[5]);
