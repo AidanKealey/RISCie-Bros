@@ -1,15 +1,15 @@
 // Conditional Branch Logic
 
 module ConFF #(parameter val) (
-   output reg q,
-   input [31:0] d,
-   input [31:0] IR_Out,
-	input Con_In
+	output reg q,
+	input [31:0] d,
+	input [31:0] IR_Data,
+	input ConFF_In
 	);
 
 	always @ (*) begin
-		if(Con_In)
-			case(IR_Out[22:19]) 
+		if(ConFF_In)
+			case(IR_Data[22:19]) 
 				4'b0011 : begin   // brmi (branch if negative)
 					if (d < 0)
 						q = 1;
@@ -33,8 +33,6 @@ module ConFF #(parameter val) (
 						q = 1;
 					else
 						q = 0;
-					end
-				default : begin	// default case (do nothing)
 					end
 			endcase
    end

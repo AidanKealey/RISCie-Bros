@@ -3,7 +3,7 @@
 module ALU (
    output reg [31:0] ZHI, ZLO,
    input [31:0] A, B,
-   input [4:0] ctrl,
+   input [11:0] ctrl,
    input clr, clk, enable
 	);
 
@@ -11,57 +11,45 @@ module ALU (
 
    always @ (*) begin
       case(ctrl)
-         5'b01011 : begin                		// not
-            ZLO <= ~ A; 
-            ZHI <= 32'd0;
+         ctrl[11] : begin                		// not
+            ZLO = ~ A; 
 				end
-         5'b01010 : begin                		// negate
-            ZLO <= ~ A + 1; 
-            ZHI <= 32'd0;
+         ctrl[10] : begin                		// negate
+            ZLO = ~ A + 1; 
 				end
-         5'b01001 : begin                		// or
-            ZLO <= A | B; 
-            ZHI <= 32'd0;
-				end
-         5'b01000 : begin                		// and
-            ZLO <= A & B; 
-            ZHI  <= 32'd0;
-				end 
-         5'b00111 : begin                		// rotate left
-            ZLO <= A << B | A >> (32 - B);
-            ZHI <= 32'd0;
-				end
-         5'b00110 : begin                		// rotate right
-            ZLO <= A >> B | A << (32 - B);
-            ZHI <= 32'd0;
-				end
-         5'b00101 : begin                		// shift left
-            ZLO <= A << B; 
-            ZHI <= 32'd0;
-				end
-         5'b00100 : begin                		// shift right
-            ZLO <= A >> B;
-            ZHI <= 32'd0;
-				end
-         5'b00011 : begin                		// divide
+         ctrl[9] : begin                		// divide
             ZLO = A / B;                		
             ZHI = A % B;                		
 				end
-         5'b00010 : begin                		// multiply
+         ctrl[8] : begin                		// multiply
             C = A * B;
-            ZLO <= C[31:0];
-            ZHI <= C[63:32];
+            ZLO = C[31:0];
+            ZHI = C[63:32];
 				end
-         5'b00001 : begin                		// subract
-            ZLO <= A - B; 
-            ZHI <= 32'd0;
+         ctrl[7] : begin                		// or
+            ZLO = A | B; 
 				end
-         5'b00000 : begin                		// add
-            ZLO <= A + B; 
-            ZHI <= 32'd0;
+         ctrl[6] : begin                		// and
+            ZLO = A & B; 
+				end 
+         ctrl[5] : begin                		// rotate left
+            ZLO = A << B | A >> (32 - B);
 				end
-         default : begin 
-				end             						// default case (do nothing)
+         ctrl[4] : begin                		// rotate right
+            ZLO = A >> B | A << (32 - B);
+				end
+         ctrl[3] : begin                		// shift left
+            ZLO = A << B; 
+				end
+         ctrl[2] : begin                		// shift right
+            ZLO = A >> B;
+				end
+         ctrl[1] : begin                		// subract
+            ZLO = A - B; 
+				end
+         ctrl[0] : begin                		// add
+            ZLO = A + B; 
+				end
         endcase
     end
 endmodule // ALU
