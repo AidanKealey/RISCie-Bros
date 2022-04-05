@@ -11,6 +11,6 @@ module Register #(parameter val) (
 			q = 0;
 		else if (enable)
 			q = d;
-		end
+	end
 	initial q = val; // assign initial value
 endmodule // Register

@@ -120,7 +120,7 @@ endmodule
 // Retrieval info: PRIVATE: DataBusSeparated NUMERIC "1"
 // Retrieval info: PRIVATE: IMPLEMENT_IN_LES NUMERIC "0"
 // Retrieval info: PRIVATE: INIT_FILE_LAYOUT STRING "PORT_A"
-// Retrieval info: PRIVATE: INIT_TO_SIM_X NUMERIC "0"
+// Retrieval info: PRIVATE: INIT_TO_SIM_X NUMERIC "0"F
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
@@ -142,7 +142,7 @@ endmodule
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
-// Retrieval info: CONSTANT: INIT_FILE STRING "RAM.Hex"
+// Retrieval info: CONSTANT: INIT_FILE STRING "RAM.hex"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone III"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"

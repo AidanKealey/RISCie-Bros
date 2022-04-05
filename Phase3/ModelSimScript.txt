@@ -1,0 +1,56 @@
+add wave -position insertpoint sim:/CPU_tb/Run;
+add wave -position insertpoint sim:/CPU_tb/Stop;
+add wave -position insertpoint sim:/CPU_tb/Reset;
+
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/IR/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/PC/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/MDR/BusMux_In_MDR;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/MAR/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R0/BusMux_In_R0;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R1/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R2/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R3/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R4/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R5/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R6/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R7/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R8/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R9/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R10/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R11/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R12/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R13/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R14/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/R15/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/HI/q;
+add wave -position insertpoint sim:/CPU_tb/DUT/Datapath/LO/q;
+
+radix signal sim:/CPU_tb/Run decimal;
+radix signal sim:/CPU_tb/Stop decimal;
+radix signal sim:/CPU_tb/Reset decimal;
+
+radix signal sim:/CPU_tb/DUT/Datapath/IR/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/PC/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/MDR/BusMux_In_MDR hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/MAR/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R0/BusMux_In_R0 hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R1/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R2/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R3/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R4/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R5/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R6/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R7/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R8/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R9/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R10/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R11/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R12/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R13/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R14/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/R15/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/HI/q hexadecimal;
+radix signal sim:/CPU_tb/DUT/Datapath/LO/q hexadecimal;
+
+restart -f;
+run 10500ns;

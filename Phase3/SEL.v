@@ -25,5 +25,5 @@ module SEL (
          RX_In[Decoder_In] = 1;
 		else if (R_Out || BA_Out)
          RX_Out[Decoder_In] = 1;
-		end
+	end
 endmodule // SEL

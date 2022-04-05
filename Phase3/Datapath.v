@@ -1,33 +1,32 @@
 // Single-Bus Mini SRC Datapath
 
 module Datapath (
+	output [31:0] BusMux_Out,
 	output [31:0] Output_Data,
 	output [31:0] IR_Data,
 	output [31:0] BusMux_In_MDR,
 	output [8:0] MAR_Data,
 	output ConFF_Out,
-   	input [31:0] Input_Data,
+   input [31:0] Input_Data,
 	input [31:0] RAM_Data,
-   	input Clear, Clock, Read, Write, IncPC,
+  	input Clear, Clock, Read, Write, IncPC,
 	input PC_Out, MDR_Out, ZHI_Out, ZLO_Out, HI_Out, LO_Out, C_Out, InPort_Out,
-   	input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, ConFF_In,
+  	input PC_In, MDR_In, MAR_In, IR_In, Y_In, ZHI_In, ZLO_In, HI_In, LO_In, InPort_In, OutPort_In, ConFF_In,
 	input ADD, SUB, SHR, SHL, ROR, ROL, AND, OR, MUL, DIV, NEG, NOT,
-   	input G_RA, G_RB, G_RC, R_In, R_Out, BA_Out
+  	input G_RA, G_RB, G_RC, R_In, R_Out, BA_Out
 	);
 
-	wire [31:0] BusMux_Out,
 	wire [31:0] BusMux_In_R0, BusMux_In_R1, BusMux_In_R2, BusMux_In_R3, BusMux_In_R4, BusMux_In_R5, BusMux_In_R6, BusMux_In_R7, BusMux_In_R8, BusMux_In_R9, BusMux_In_R10, BusMux_In_R11, BusMux_In_R12, BusMux_In_R13, BusMux_In_R14, BusMux_In_R15, BusMux_In_HI, BusMux_In_LO, BusMux_In_ZHI, BusMux_In_ZLO, BusMux_In_PC, BusMux_In_InPort, BusMux_In_C;
 	wire [31:0] Y_Data;
 	wire [31:0] ZHI_Data, ZLO_Data;
 	wire [15:0] RX_Out;
 	wire [15:0] RX_In;
 	wire [11:0] Control;
-	wire ADD, SUB, SHR, SHL, ROR, ROL, AND, OR, MUL, DIV, NEG, NOT;
 
 	// General Purpose 32-Bit Registers
 	ZeroRegister R0 (BusMux_In_R0, BusMux_Out, Clear, Clock, RX_In[0], BA_Out);
 	Register #(0) R1 (BusMux_In_R1, BusMux_Out, Clear, Clock, RX_In[1]);
-	Register #(1) R2 (BusMux_In_R2, BusMux_Out, Clear, Clock, RX_In[2]);
+	Register #(0) R2 (BusMux_In_R2, BusMux_Out, Clear, Clock, RX_In[2]);
 	Register #(0) R3 (BusMux_In_R3, BusMux_Out, Clear, Clock, RX_In[3]);
 	Register #(0) R4 (BusMux_In_R4, BusMux_Out, Clear, Clock, RX_In[4]);
 	Register #(0) R5 (BusMux_In_R5, BusMux_Out, Clear, Clock, RX_In[5]);
@@ -64,21 +63,21 @@ module Datapath (
 	Register #(0) Y (Y_Data, BusMux_Out, Clear, Clock, Y_In);
 
 	// ALU One-Hot Encoding
-	assign CONTROL[11] = NOT;
-	assign CONTROL[10] = NEG;
-	assign CONTROL[9] = DIV;
-	assign CONTROL[8] = MUL;
-	assign CONTROL[7] = OR;
-	assign CONTROL[6] = AND;
-	assign CONTROL[5] = ROL;
-	assign CONTROL[4] = ROR;
-	assign CONTROL[3] = SHL;
-	assign CONTROL[2] = SHR;
-	assign CONTROL[1] = SUB;
-	assign CONTROL[0] = ADD;
+	assign Control[11] = NOT; 
+	assign Control[10] = NEG;
+	assign Control[9] = DIV;
+	assign Control[8] = MUL;
+	assign Control[7] = OR;
+	assign Control[6] = AND;
+	assign Control[5] = ROL;
+	assign Control[4] = ROR;
+	assign Control[3] = SHL;
+	assign Control[2] = SHR;
+	assign Control[1] = SUB;
+	assign Control[0] = ADD;
 
 	// Arithmetic Logic Unit
-	ALU ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, CONTROL, Clear, Clock);
+	ALU ALU (ZHI_Data, ZLO_Data, Y_Data, BusMux_Out, Control);
 
 	// 32-Bit Register ZHI
 	Register #(0) ZHI (BusMux_In_ZHI, ZHI_Data, Clear, Clock, ZHI_In);
@@ -96,7 +95,7 @@ module Datapath (
 	SEL SEL (BusMux_In_C, RX_In, RX_Out, IR_Data, G_RA, G_RB, G_RC, R_In, R_Out, BA_Out);
 
 	// Conditional Branch Logic
-	ConFF #(0) ConFF (ConFF_Out, BusMux_Out, IR_Data, ConFF_In);
+	ConFF ConFF (ConFF_Out, BusMux_Out, IR_Data, ConFF_In);
 
 	// 32-Bit Bus
 	Bus Bus (

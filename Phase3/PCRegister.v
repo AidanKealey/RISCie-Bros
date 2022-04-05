@@ -13,6 +13,6 @@ module PCRegister #(parameter val = 0) (
 			q = d;
 		else if (increment)
 			q = q + 1;
-		end
+	end
 	initial q = val; // assign initial value
 endmodule // PCRegister
